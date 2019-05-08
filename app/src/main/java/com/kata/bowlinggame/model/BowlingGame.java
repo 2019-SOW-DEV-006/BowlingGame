@@ -2,6 +2,8 @@ package com.kata.bowlinggame.model;
 
 import java.util.List;
 
+import static com.kata.bowlinggame.viewmodel.GameViewModel.ALL_POSSIBLE_BUTTONS;
+
 public class BowlingGame {
     private int rolls[] = new int[21];
     private int rollIndex = 0;
@@ -11,7 +13,7 @@ public class BowlingGame {
     }
 
     public List<String> possiblePinsForSecondRoll() {
-        return null;
+        return ALL_POSSIBLE_BUTTONS;
     }
 
     public boolean isGameEnds() {

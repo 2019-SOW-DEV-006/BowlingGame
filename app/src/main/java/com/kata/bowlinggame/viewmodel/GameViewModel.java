@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameViewModel {
-    static final List<String> ALL_POSSIBLE_BUTTONS;
+    public static final List<String> ALL_POSSIBLE_BUTTONS;
     static final List<String> NEW_SCORE_BOARD;
 
     private MutableLiveData<ScoreBoard> scoreBoard = new MutableLiveData<>();

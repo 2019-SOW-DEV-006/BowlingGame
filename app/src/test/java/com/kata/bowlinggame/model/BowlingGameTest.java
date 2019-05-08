@@ -3,6 +3,8 @@ package com.kata.bowlinggame.model;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.kata.bowlinggame.viewmodel.GameViewModel.ALL_POSSIBLE_BUTTONS;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -142,6 +144,14 @@ public class BowlingGameTest {
         bowlingGame.pins(10);
 
         assertFalse(bowlingGame.isGameEnds());
+    }
+
+    @Test
+    public void shouldReturnAllPossibleButtons_OnNewFrame() {
+        bowlingGame.pins(5);
+        bowlingGame.pins(5);
+
+        assertArrayEquals(ALL_POSSIBLE_BUTTONS.toArray(), bowlingGame.possiblePinsForSecondRoll().toArray());
     }
 
     private void pinsDownInEveryRow(int pinsDown) {
