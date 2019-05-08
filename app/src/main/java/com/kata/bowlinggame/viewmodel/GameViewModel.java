@@ -31,9 +31,12 @@ public class GameViewModel {
     }
 
     private BowlingGame bowlingGame;
+    private ScoreBoard currentScoreBoard;
+    private int rollIndex = 0;
 
     GameViewModel(BowlingGame bowlingGame) {
         this.bowlingGame = bowlingGame;
+        newGame();
     }
 
     LiveData<ScoreBoard> getScoreBoard() {
@@ -41,10 +44,12 @@ public class GameViewModel {
     }
 
     void newGame() {
-        scoreBoard.setValue(new ScoreBoard(NEW_SCORE_BOARD));
+        currentScoreBoard = new ScoreBoard(NEW_SCORE_BOARD);
+        scoreBoard.setValue(currentScoreBoard);
     }
 
     void roll(int pinsDown) {
         bowlingGame.pins(pinsDown);
+        currentScoreBoard.getScoreBoard().set(rollIndex++, ""+pinsDown);
     }
 }

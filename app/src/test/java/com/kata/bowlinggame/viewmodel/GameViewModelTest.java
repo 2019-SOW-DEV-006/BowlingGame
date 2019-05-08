@@ -12,6 +12,7 @@ import org.junit.rules.TestRule;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class GameViewModelTest {
@@ -38,10 +39,14 @@ public class GameViewModelTest {
     }
 
     @Test
-    public void shouldSendPinsDownToBowlingModel() {
+    public void shouldSendPinsDownToBowlingModel_AndUpdateScoreBoard() {
         int pinsDown = 7;
         viewModel.roll(pinsDown);
 
         Mockito.verify(bowlingGame).pins(pinsDown);
+        assertNotNull(viewModel.getScoreBoard());
+        ScoreBoard scoreBoard = viewModel.getScoreBoard().getValue();
+        assertNotNull(scoreBoard);
+        assertEquals(""+pinsDown, scoreBoard.getScoreBoard().get(0));
     }
 }
