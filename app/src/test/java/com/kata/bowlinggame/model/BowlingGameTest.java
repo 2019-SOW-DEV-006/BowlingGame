@@ -64,6 +64,18 @@ public class BowlingGameTest {
         assertEquals(30, bowlingGame.score().intValue());
     }
 
+    @Test
+    public void shouldReturnScoreAs20_WhenStrikeInLastFrame_And5PinsDownInBothBonus_AndNoPinsDownInAllOtherRolls() {
+        for (int roll = 0; roll < 18; roll++) {
+            bowlingGame.pins(0);
+        }
+        bowlingGame.pins(10);
+        bowlingGame.pins(5);
+        bowlingGame.pins(5);
+
+        assertEquals(20, bowlingGame.score().intValue());
+    }
+
     private void pinsDownInEveryRow(int pinsDown) {
         for (int roll = 0; roll < 20; roll++) {
             bowlingGame.pins(pinsDown);
