@@ -154,6 +154,15 @@ public class BowlingGameTest {
         assertArrayEquals(ALL_POSSIBLE_BUTTONS.toArray(), bowlingGame.possiblePinsForSecondRoll().toArray());
     }
 
+    @Test
+    public void shouldReturnAllPossibleButtons_OnSecondRollOfAnyFrame() {
+        bowlingGame.pins(5);
+        bowlingGame.pins(5);
+        bowlingGame.pins(7);
+
+        assertArrayEquals(new String[]{"0","1","2","3"}, bowlingGame.possiblePinsForSecondRoll().toArray());
+    }
+
     private void pinsDownInEveryRow(int pinsDown) {
         for (int roll = 0; roll < 20; roll++) {
             bowlingGame.pins(pinsDown);

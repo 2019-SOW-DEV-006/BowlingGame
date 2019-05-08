@@ -13,7 +13,22 @@ public class BowlingGame {
     }
 
     public List<String> possiblePinsForSecondRoll() {
-        return ALL_POSSIBLE_BUTTONS;
+        boolean newFrame = true;
+        for (int index = 0; index < rollIndex; ) {
+            if (isStrike(index)) {
+                newFrame = true;
+                index++;
+            } else {
+                if ((index + 1) < rollIndex) {
+                    newFrame = true;
+                    index += 2;
+                } else {
+                    newFrame = false;
+                    break;
+                }
+            }
+        }
+        return newFrame ? ALL_POSSIBLE_BUTTONS : ALL_POSSIBLE_BUTTONS.subList(0, 11 - rolls[rollIndex - 1]);
     }
 
     public boolean isGameEnds() {
@@ -31,7 +46,7 @@ public class BowlingGame {
             }
         }
 
-        if(position <= rollIndex) {
+        if (position <= rollIndex) {
             if (strikeBonusRequired) {
                 position += 2;
             }
