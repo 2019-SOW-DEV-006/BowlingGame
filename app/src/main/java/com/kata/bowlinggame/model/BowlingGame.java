@@ -17,15 +17,17 @@ public class BowlingGame {
     public boolean isGameEnds() {
         int frame = 0;
         int index;
+        boolean isBonusRequired = true;
         for (index = 0; index < rollIndex; index++) {
             if (isStrike(index)) {
                 frame++;
             } else {
+                isBonusRequired = isSpare(index);
                 frame++;
                 index++;
             }
         }
-        return (frame == 10 && rollIndex == 20) || (frame == 11 && index ==22);
+        return (frame == 10 && rollIndex == 20 && !isBonusRequired) || (frame == 11 && index == 22);
     }
 
     public Integer score() {
@@ -51,7 +53,7 @@ public class BowlingGame {
     }
 
     private boolean isSpare(int position) {
-        return (rolls[position] + rolls[position + 1]) == 10;
+        return position < 20 && (rolls[position] + rolls[position + 1]) == 10;
     }
 
     private int strikeBonus(int position) {
