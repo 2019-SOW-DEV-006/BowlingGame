@@ -85,6 +85,17 @@ public class BowlingGameTest {
         assertEquals(150, bowlingGame.score().intValue());
     }
 
+    @Test
+    public void shouldReturnScoreAs300_WhenStrikeInAllFramesIncludingBonus() {
+        for (int frame = 0; frame < 10; frame++) {
+            bowlingGame.pins(10);
+        }
+        bowlingGame.pins(10);
+        bowlingGame.pins(10);
+
+        assertEquals(300, bowlingGame.score().intValue());
+    }
+
     private void pinsDownInEveryRow(int pinsDown) {
         for (int roll = 0; roll < 20; roll++) {
             bowlingGame.pins(pinsDown);
