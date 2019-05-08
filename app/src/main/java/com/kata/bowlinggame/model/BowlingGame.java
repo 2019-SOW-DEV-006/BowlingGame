@@ -16,6 +16,6 @@ public class BowlingGame {
     }
 
     public Integer score() {
-        return null;
+        return 0;
     }
 }
