@@ -59,6 +59,7 @@ public class GameViewModel {
     void roll(int pinsDown) {
         bowlingGame.pins(pinsDown);
         currentScoreBoard.board().set(rollIndex++, "" + pinsDown);
+        possiblePins.setValue(new PossiblePins(bowlingGame.possiblePinsForSecondRoll()));
     }
 
     LiveData<PossiblePins> getPossiblePins() {

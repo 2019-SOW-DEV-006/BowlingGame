@@ -11,11 +11,13 @@ import org.junit.Test;
 import org.junit.rules.TestRule;
 import org.mockito.Mockito;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.when;
 
 public class GameViewModelTest {
 
@@ -57,6 +59,16 @@ public class GameViewModelTest {
 
         List<String> possiblePins = viewModel.getPossiblePins().getValue().getPossiblePins();
         assertArrayEquals(GameViewModel.ALL_POSSIBLE_BUTTONS.toArray(), possiblePins.toArray());
+    }
+
+    @Test
+    public void shouldShowPossibleButtonsFromModel() {
+        when(bowlingGame.possiblePinsForSecondRoll()).thenReturn(Arrays.asList("0","1","2","3"));
+
+        viewModel.roll(7);
+
+        List<String> possiblePins = viewModel.getPossiblePins().getValue().getPossiblePins();
+        assertArrayEquals(new String[]{"0","1","2","3"}, possiblePins.toArray());
     }
 
     private void assertValidScoreBoard() {
