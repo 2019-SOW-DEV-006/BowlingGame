@@ -16,7 +16,8 @@ public class BowlingGame {
 
     public boolean isGameEnds() {
         int frame = 0;
-        for (int index = 0; index < rollIndex; index++) {
+        int index;
+        for (index = 0; index < rollIndex; index++) {
             if (isStrike(index)) {
                 frame++;
             } else {
@@ -24,7 +25,7 @@ public class BowlingGame {
                 index++;
             }
         }
-        return frame == 10;
+        return frame == 10 || (frame == 11 && index ==22);
     }
 
     public Integer score() {
