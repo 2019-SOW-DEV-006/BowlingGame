@@ -10,4 +10,12 @@ public class BowlingGame {
     public List<String> possiblePinsForSecondRoll() {
         return null;
     }
+
+    public boolean isGameEnds() {
+        return false;
+    }
+
+    public Integer score() {
+        return null;
+    }
 }

@@ -71,6 +71,18 @@ public class GameViewModelTest {
         assertArrayEquals(new String[]{"0","1","2","3"}, possiblePins.toArray());
     }
 
+    @Test
+    public void shouldDisplayScore_WhenGameEnds() {
+        int score = 300;
+        when(bowlingGame.score()).thenReturn(score);
+        when(bowlingGame.isGameEnds()).thenReturn(true);
+
+        viewModel.roll(2);
+
+        assertNotNull(viewModel.getGameScore().getValue());
+        assertEquals(score, viewModel.getGameScore().getValue().intValue());
+    }
+
     private void assertValidScoreBoard() {
         assertNotNull(viewModel.getScoreBoard());
         assertNotNull(getScoreBoard());

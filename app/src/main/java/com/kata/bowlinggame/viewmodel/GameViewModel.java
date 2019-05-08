@@ -17,6 +17,12 @@ public class GameViewModel {
 
     private MutableLiveData<ScoreBoard> scoreBoard = new MutableLiveData<>();
     private MutableLiveData<PossiblePins> possiblePins = new MutableLiveData<>();
+    private MutableLiveData<Integer> gameScore = new MutableLiveData<>();
+
+    private BowlingGame bowlingGame;
+    private ScoreBoard currentScoreBoard;
+
+    private int rollIndex = 0;
 
     static {
         NEW_SCORE_BOARD = new ArrayList<>(Arrays.asList(
@@ -37,10 +43,6 @@ public class GameViewModel {
         ));
     }
 
-    private BowlingGame bowlingGame;
-    private ScoreBoard currentScoreBoard;
-    private int rollIndex = 0;
-
     GameViewModel(BowlingGame bowlingGame) {
         this.bowlingGame = bowlingGame;
         newGame();
@@ -60,10 +62,15 @@ public class GameViewModel {
         bowlingGame.pins(pinsDown);
         currentScoreBoard.board().set(rollIndex++, "" + pinsDown);
         possiblePins.setValue(new PossiblePins(bowlingGame.possiblePinsForSecondRoll()));
+        gameScore.setValue(bowlingGame.score());
     }
 
     LiveData<PossiblePins> getPossiblePins() {
         return possiblePins;
+    }
+
+    LiveData<Integer> getGameScore() {
+        return gameScore;
     }
 
 }
