@@ -25,7 +25,7 @@ public class BowlingGame {
                 index++;
             }
         }
-        return frame == 10 || (frame == 11 && index ==22);
+        return (frame == 10 && rollIndex == 20) || (frame == 11 && index ==22);
     }
 
     public Integer score() {

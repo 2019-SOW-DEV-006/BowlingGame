@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BowlingGameTest {
@@ -113,6 +114,15 @@ public class BowlingGameTest {
         }
 
         assertTrue(bowlingGame.isGameEnds());
+    }
+
+    @Test
+    public void shouldReturnFalse_WhenGameIsInProgress() {
+        for (int roll = 0; roll < 19; roll++) {
+            bowlingGame.pins(4);
+        }
+
+        assertFalse(bowlingGame.isGameEnds());
     }
 
     private void pinsDownInEveryRow(int pinsDown) {
