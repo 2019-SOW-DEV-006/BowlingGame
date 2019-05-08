@@ -61,15 +61,21 @@ public class GameViewModel extends ViewModel {
 
     public void roll(int pinsDown) {
 
-        if(rollIndex > 20) {
+        if(bowlingGame.isGameEnds()) {
             return;
         }
 
         bowlingGame.pins(pinsDown);
         currentScoreBoard.board().set(rollIndex++, "" + pinsDown);
+
+        if (pinsDown == 10 && rollIndex < 20) {
+            rollIndex++;
+        }
+
+        scoreBoard.setValue(currentScoreBoard);
         possiblePins.setValue(new PossiblePins(bowlingGame.possiblePinsForSecondRoll()));
 
-        if(bowlingGame.isGameEnds()) {
+        if (bowlingGame.isGameEnds()) {
             gameScore.setValue(bowlingGame.score());
         }
     }

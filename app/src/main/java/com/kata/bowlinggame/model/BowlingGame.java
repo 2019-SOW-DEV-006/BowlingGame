@@ -13,6 +13,10 @@ public class BowlingGame {
     }
 
     public List<String> possiblePinsForSecondRoll() {
+        return isNewFrame() ? ALL_POSSIBLE_BUTTONS : ALL_POSSIBLE_BUTTONS.subList(0, 11 - rolls[rollIndex - 1]);
+    }
+
+    private boolean isNewFrame() {
         boolean newFrame = true;
         for (int index = 0; index < rollIndex; ) {
             if (isStrike(index)) {
@@ -28,7 +32,7 @@ public class BowlingGame {
                 }
             }
         }
-        return newFrame ? ALL_POSSIBLE_BUTTONS : ALL_POSSIBLE_BUTTONS.subList(0, 11 - rolls[rollIndex - 1]);
+        return newFrame;
     }
 
     public boolean isGameEnds() {
