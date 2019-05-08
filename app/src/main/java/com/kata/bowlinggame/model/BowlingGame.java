@@ -15,7 +15,7 @@ public class BowlingGame {
     }
 
     public boolean isGameEnds() {
-        return false;
+        return true;
     }
 
     public Integer score() {
