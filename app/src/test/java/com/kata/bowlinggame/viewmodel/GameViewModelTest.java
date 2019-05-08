@@ -17,6 +17,7 @@ import java.util.List;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 public class GameViewModelTest {
@@ -81,6 +82,17 @@ public class GameViewModelTest {
 
         assertNotNull(viewModel.getGameScore().getValue());
         assertEquals(score, viewModel.getGameScore().getValue().intValue());
+    }
+
+    @Test
+    public void shouldNotUpdateScore_WhenGameIsInProgress() {
+        int score = 150;
+        when(bowlingGame.score()).thenReturn(score);
+        when(bowlingGame.isGameEnds()).thenReturn(false);
+
+        viewModel.roll(2);
+
+        assertNull(viewModel.getGameScore().getValue());
     }
 
     private void assertValidScoreBoard() {
