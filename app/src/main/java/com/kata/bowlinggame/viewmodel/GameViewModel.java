@@ -2,6 +2,7 @@ package com.kata.bowlinggame.viewmodel;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
 
 import com.kata.bowlinggame.domain.PossiblePins;
 import com.kata.bowlinggame.domain.ScoreBoard;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GameViewModel {
+public class GameViewModel extends ViewModel {
     public static final List<String> ALL_POSSIBLE_BUTTONS;
     static final List<String> NEW_SCORE_BOARD;
 
@@ -43,12 +44,12 @@ public class GameViewModel {
         ));
     }
 
-    GameViewModel(BowlingGame bowlingGame) {
+    public GameViewModel(BowlingGame bowlingGame) {
         this.bowlingGame = bowlingGame;
         newGame();
     }
 
-    LiveData<ScoreBoard> getScoreBoard() {
+    public LiveData<ScoreBoard> getScoreBoard() {
         return scoreBoard;
     }
 
@@ -58,7 +59,12 @@ public class GameViewModel {
         possiblePins.setValue(new PossiblePins(ALL_POSSIBLE_BUTTONS));
     }
 
-    void roll(int pinsDown) {
+    public void roll(int pinsDown) {
+
+        if(rollIndex > 20) {
+            return;
+        }
+
         bowlingGame.pins(pinsDown);
         currentScoreBoard.board().set(rollIndex++, "" + pinsDown);
         possiblePins.setValue(new PossiblePins(bowlingGame.possiblePinsForSecondRoll()));
@@ -68,11 +74,11 @@ public class GameViewModel {
         }
     }
 
-    LiveData<PossiblePins> getPossiblePins() {
+    public LiveData<PossiblePins> getPossiblePins() {
         return possiblePins;
     }
 
-    LiveData<Integer> getGameScore() {
+    public LiveData<Integer> getGameScore() {
         return gameScore;
     }
 
