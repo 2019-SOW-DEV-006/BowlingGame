@@ -62,7 +62,7 @@ public class GameViewModelTest {
     }
 
     @Test
-    public void shouldShowPossibleButtonsFromModel() {
+    public void shouldShowPossibleButtonsForSecondRollOfSameFrameFromModel() {
         when(bowlingGame.possiblePinsForSecondRoll()).thenReturn(Arrays.asList("0","1","2","3"));
 
         viewModel.roll(7);
