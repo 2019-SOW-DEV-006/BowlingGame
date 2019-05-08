@@ -3,8 +3,11 @@ package com.kata.bowlinggame.model;
 import java.util.List;
 
 public class BowlingGame {
-    public void pins(int pinsDown) {
+    private int rolls[] = new int[21];
+    private int rollIndex = 0;
 
+    public void pins(int pinsDown) {
+        rolls[rollIndex++] = pinsDown;
     }
 
     public List<String> possiblePinsForSecondRoll() {
@@ -16,6 +19,10 @@ public class BowlingGame {
     }
 
     public Integer score() {
-        return 0;
+        int score = 0;
+        for (int pins : rolls) {
+            score += pins;
+        }
+        return score;
     }
 }
