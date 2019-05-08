@@ -15,19 +15,30 @@ public class BowlingGame {
     }
 
     public boolean isGameEnds() {
-        int frame = 0;
-        int index;
-        boolean isBonusRequired = true;
-        for (index = 0; index < rollIndex; index++) {
-            if (isStrike(index)) {
-                frame++;
+        int position = 0;
+        int frame;
+        boolean strikeBonusRequired = false;
+        boolean spareBonusRequired = false;
+        for (frame = 0; frame < 10; frame++) {
+            strikeBonusRequired = isStrike(position);
+            spareBonusRequired = isSpare(position);
+            if (isStrike(position)) {
+                position++;
             } else {
-                isBonusRequired = isSpare(index);
-                frame++;
-                index++;
+                position += 2;
             }
         }
-        return (frame == 10 && rollIndex == 20 && !isBonusRequired) || (frame == 11 && index == 22);
+
+        if(position <= rollIndex) {
+            if (strikeBonusRequired) {
+                position += 2;
+            }
+            if (spareBonusRequired) {
+                position += 1;
+            }
+        }
+
+        return position <= rollIndex;
     }
 
     public Integer score() {

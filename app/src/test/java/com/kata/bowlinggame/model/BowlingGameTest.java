@@ -134,6 +134,16 @@ public class BowlingGameTest {
         assertFalse(bowlingGame.isGameEnds());
     }
 
+    @Test
+    public void shouldReturnFalse_WhenStrikeBonusAreNotGiven() {
+        for (int frame = 0; frame < 10; frame++) {
+            bowlingGame.pins(10);
+        }
+        bowlingGame.pins(10);
+
+        assertFalse(bowlingGame.isGameEnds());
+    }
+
     private void pinsDownInEveryRow(int pinsDown) {
         for (int roll = 0; roll < 20; roll++) {
             bowlingGame.pins(pinsDown);
