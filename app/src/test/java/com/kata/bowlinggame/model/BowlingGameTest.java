@@ -107,7 +107,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    public void shouldReturnFalse_WhenGameEnds() {
+    public void shouldReturnTrue_WhenGameEndsWithBonus() {
         for (int roll = 0; roll < 21; roll++) {
             bowlingGame.pins(5);
         }
