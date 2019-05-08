@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.kata.bowlinggame.domain.ScoreBoard;
+import com.kata.bowlinggame.model.BowlingGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,11 +30,21 @@ public class GameViewModel {
         ));
     }
 
+    private BowlingGame bowlingGame;
+
+    GameViewModel(BowlingGame bowlingGame) {
+        this.bowlingGame = bowlingGame;
+    }
+
     LiveData<ScoreBoard> getScoreBoard() {
         return scoreBoard;
     }
 
     void newGame() {
         scoreBoard.setValue(new ScoreBoard(NEW_SCORE_BOARD));
+    }
+
+    void roll(int pinsDown) {
+        bowlingGame.pins(pinsDown);
     }
 }
