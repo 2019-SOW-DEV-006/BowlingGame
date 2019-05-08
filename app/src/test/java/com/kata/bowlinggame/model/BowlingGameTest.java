@@ -99,8 +99,8 @@ public class BowlingGameTest {
 
     @Test
     public void shouldReturnTrue_WhenGameEnds() {
-        for (int roll = 0; roll < 21; roll++) {
-            bowlingGame.pins(5);
+        for (int roll = 0; roll < 20; roll++) {
+            bowlingGame.pins(4);
         }
 
         assertTrue(bowlingGame.isGameEnds());
