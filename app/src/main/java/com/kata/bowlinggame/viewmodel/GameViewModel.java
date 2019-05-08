@@ -50,6 +50,6 @@ public class GameViewModel {
 
     void roll(int pinsDown) {
         bowlingGame.pins(pinsDown);
-        currentScoreBoard.getScoreBoard().set(rollIndex++, ""+pinsDown);
+        currentScoreBoard.board().set(rollIndex++, ""+pinsDown);
     }
 }

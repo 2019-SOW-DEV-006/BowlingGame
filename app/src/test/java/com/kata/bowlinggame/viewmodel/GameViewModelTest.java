@@ -19,8 +19,9 @@ public class GameViewModelTest {
 
     @Rule
     public TestRule rule = new InstantTaskExecutorRule();
-    private GameViewModel viewModel;
+
     private BowlingGame bowlingGame;
+    private GameViewModel viewModel;
 
     @Before
     public void setUp() {
@@ -32,10 +33,9 @@ public class GameViewModelTest {
     public void shouldUpdateScoreBoardWithEmptyValues_WhenNewGameIsCalled() {
         viewModel.newGame();
 
-        assertNotNull(viewModel.getScoreBoard());
-        ScoreBoard scoreBoard = viewModel.getScoreBoard().getValue();
-        assertNotNull(scoreBoard);
-        assertArrayEquals(GameViewModel.NEW_SCORE_BOARD.toArray(), scoreBoard.getScoreBoard().toArray());
+        assertValidScoreBoard();
+        ScoreBoard scoreBoard = getScoreBoard();
+        assertArrayEquals(GameViewModel.NEW_SCORE_BOARD.toArray(), scoreBoard.board().toArray());
     }
 
     @Test
@@ -44,9 +44,17 @@ public class GameViewModelTest {
         viewModel.roll(pinsDown);
 
         Mockito.verify(bowlingGame).pins(pinsDown);
+        assertValidScoreBoard();
+        ScoreBoard scoreBoard = getScoreBoard();
+        assertEquals(""+pinsDown, scoreBoard.board().get(0));
+    }
+
+    private void assertValidScoreBoard() {
         assertNotNull(viewModel.getScoreBoard());
-        ScoreBoard scoreBoard = viewModel.getScoreBoard().getValue();
-        assertNotNull(scoreBoard);
-        assertEquals(""+pinsDown, scoreBoard.getScoreBoard().get(0));
+        assertNotNull(getScoreBoard());
+    }
+
+    private ScoreBoard getScoreBoard() {
+        return viewModel.getScoreBoard().getValue();
     }
 }

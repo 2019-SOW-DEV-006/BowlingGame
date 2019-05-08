@@ -9,7 +9,7 @@ public class ScoreBoard {
         this.scoreBoard = scoreBoard;
     }
 
-    public List<String> getScoreBoard() {
+    public List<String> board() {
         return scoreBoard;
     }
 
