@@ -30,8 +30,6 @@ public class BowlingGameTest {
 
     @Test
     public void shouldReturnScoreAs20_WhenSpareInFirstFrame_And5PinsDownInFirstRollOfSecondFrame_AndNoPinsDownInAllOtherRolls() {
-        BowlingGame bowlingGame = new BowlingGame();
-
         bowlingGame.pins(4);
         bowlingGame.pins(6);
         bowlingGame.pins(5);
@@ -40,6 +38,18 @@ public class BowlingGameTest {
         }
 
         assertEquals(20, bowlingGame.score().intValue());
+    }
+
+    @Test
+    public void shouldReturnScoreAs15_WhenSpareInLastFrame_And5PinsDownInBonus_AndNoPinsDownInAllOtherRolls() {
+        for (int roll = 0; roll < 18; roll++) {
+            bowlingGame.pins(0);
+        }
+        bowlingGame.pins(4);
+        bowlingGame.pins(6);
+        bowlingGame.pins(5);
+
+        assertEquals(15, bowlingGame.score().intValue());
     }
 
     private void pinsDownInEveryRow(int pinsDown) {
