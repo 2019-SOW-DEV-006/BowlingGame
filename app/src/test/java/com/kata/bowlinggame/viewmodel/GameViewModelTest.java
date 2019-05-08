@@ -58,6 +58,7 @@ public class GameViewModelTest {
     public void shouldShowAllButtonsOnNewGame() {
         viewModel.newGame();
 
+        assertNotNull(viewModel.getPossiblePins().getValue());
         List<String> possiblePins = viewModel.getPossiblePins().getValue().getPossiblePins();
         assertArrayEquals(GameViewModel.ALL_POSSIBLE_BUTTONS.toArray(), possiblePins.toArray());
     }
@@ -68,6 +69,7 @@ public class GameViewModelTest {
 
         viewModel.roll(7);
 
+        assertNotNull(viewModel.getPossiblePins().getValue());
         List<String> possiblePins = viewModel.getPossiblePins().getValue().getPossiblePins();
         assertArrayEquals(new String[]{"0","1","2","3"}, possiblePins.toArray());
     }
