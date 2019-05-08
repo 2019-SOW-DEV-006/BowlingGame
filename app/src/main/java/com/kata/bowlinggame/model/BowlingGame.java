@@ -20,19 +20,36 @@ public class BowlingGame {
 
     public Integer score() {
         int score = 0;
-        for (int position = 0; position < 20; position += 2) {
-            Integer pinsDownInRow1 = rolls[position];
-            Integer pinsDownInRow2 = rolls[position + 1];
-            score += pinsDownInRow1 + pinsDownInRow2;
-
-            if (isSpare(pinsDownInRow1, pinsDownInRow2)) {
-                score += rolls[position + 2];
+        int position = 0;
+        for (int frame = 0; frame < 10; frame++) {
+            if (isStrike(position)) {
+                score += 10 + strikeBonus(position);
+                position++;
+            } else if (isSpare(position)) {
+                score += 10 + spareBonus(position);
+                position += 2;
+            } else {
+                score += rolls[position] + rolls[position + 1];
+                position += 2;
             }
         }
         return score;
     }
 
-    private boolean isSpare(Integer pinsDownInRow1, Integer pinsDownInRow2) {
-        return (pinsDownInRow1 + pinsDownInRow2) == 10;
+    private int spareBonus(int position) {
+        return rolls[position + 2];
     }
+
+    private boolean isSpare(int position) {
+        return (rolls[position] + rolls[position + 1]) == 10;
+    }
+
+    private int strikeBonus(int position) {
+        return rolls[position + 1] + rolls[position + 2];
+    }
+
+    private boolean isStrike(int position) {
+        return rolls[position] == 10;
+    }
+
 }

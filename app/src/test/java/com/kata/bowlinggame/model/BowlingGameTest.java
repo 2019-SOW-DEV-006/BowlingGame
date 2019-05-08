@@ -33,7 +33,7 @@ public class BowlingGameTest {
         bowlingGame.pins(4);
         bowlingGame.pins(6);
         bowlingGame.pins(5);
-        for (int roll = 3; roll < 21; roll++) {
+        for (int roll = 3; roll < 20; roll++) {
             bowlingGame.pins(0);
         }
 
@@ -50,6 +50,18 @@ public class BowlingGameTest {
         bowlingGame.pins(5);
 
         assertEquals(15, bowlingGame.score().intValue());
+    }
+
+    @Test
+    public void shouldReturnScoreAs30_WhenStrikeInFirstFrame_And5PinsDownInBothRollsOfSecondFrame_AndNoPinsDownInAllOtherRolls() {
+        bowlingGame.pins(10);
+        bowlingGame.pins(5);
+        bowlingGame.pins(5);
+        for (int roll = 3; roll < 20; roll++) {
+            bowlingGame.pins(0);
+        }
+
+        assertEquals(30, bowlingGame.score().intValue());
     }
 
     private void pinsDownInEveryRow(int pinsDown) {
