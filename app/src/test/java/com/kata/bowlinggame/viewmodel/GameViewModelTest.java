@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.junit.rules.TestRule;
 import org.mockito.Mockito;
 
+import java.util.List;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -47,6 +49,14 @@ public class GameViewModelTest {
         assertValidScoreBoard();
         ScoreBoard scoreBoard = getScoreBoard();
         assertEquals(""+pinsDown, scoreBoard.board().get(0));
+    }
+
+    @Test
+    public void shouldShowAllButtonsOnNewGame() {
+        viewModel.newGame();
+
+        List<String> possiblePins = viewModel.getPossiblePins().getValue().getPossiblePins();
+        assertArrayEquals(GameViewModel.ALL_POSSIBLE_BUTTONS.toArray(), possiblePins.toArray());
     }
 
     private void assertValidScoreBoard() {
