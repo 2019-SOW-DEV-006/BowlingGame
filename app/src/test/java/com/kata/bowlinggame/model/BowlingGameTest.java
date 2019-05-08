@@ -147,7 +147,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    public void shouldReturnAllPossibleButtons_OnNewFrame() {
+    public void shouldReturnAllButtons_OnNewFrame() {
         bowlingGame.pins(5);
         bowlingGame.pins(5);
 
