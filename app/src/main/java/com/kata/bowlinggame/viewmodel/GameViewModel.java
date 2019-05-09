@@ -46,6 +46,7 @@ public class GameViewModel extends ViewModel {
         currentScoreBoard = new ScoreBoard(new ArrayList<>(getDefaultBoardUI()));
         scoreBoard.setValue(currentScoreBoard);
         possiblePins.setValue(new PossiblePins(ALL_POSSIBLE_BUTTONS));
+        bowlingGame.newGame();
     }
 
     public void roll(int pinsDown) {
