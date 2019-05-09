@@ -96,4 +96,8 @@ public class BowlingGame {
         return rolls[position] == 10;
     }
 
+    public void newGame() {
+        rolls = new int[21];
+        rollIndex = 0;
+    }
 }

@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 gridView.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, scoreBoard.board()) {
                 });
                 gridView.invalidateViews();
+                gridView.smoothScrollToPosition(scoreBoard.getPosition());
             }
         });
     }

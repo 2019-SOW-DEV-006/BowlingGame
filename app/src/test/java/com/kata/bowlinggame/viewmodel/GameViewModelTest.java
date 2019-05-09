@@ -18,6 +18,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class GameViewModelTest {
@@ -62,6 +63,7 @@ public class GameViewModelTest {
         assertNotNull(viewModel.getPossiblePins().getValue());
         List<String> possiblePins = viewModel.getPossiblePins().getValue().getPossiblePins();
         assertArrayEquals(GameViewModel.ALL_POSSIBLE_BUTTONS.toArray(), possiblePins.toArray());
+        verify(bowlingGame).newGame();
     }
 
     @Test
