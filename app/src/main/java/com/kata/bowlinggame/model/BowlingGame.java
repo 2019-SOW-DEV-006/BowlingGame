@@ -16,25 +16,6 @@ public class BowlingGame {
         return isNewFrame() ? ALL_POSSIBLE_BUTTONS : ALL_POSSIBLE_BUTTONS.subList(0, 11 - rolls[rollIndex - 1]);
     }
 
-    private boolean isNewFrame() {
-        boolean newFrame = true;
-        for (int index = 0; index < rollIndex; ) {
-            if (isStrike(index)) {
-                newFrame = true;
-                index++;
-            } else {
-                if ((index + 1) < rollIndex) {
-                    newFrame = true;
-                    index += 2;
-                } else {
-                    newFrame = false;
-                    break;
-                }
-            }
-        }
-        return newFrame;
-    }
-
     public boolean isGameEnds() {
         int position = 0;
         int frame;
@@ -80,6 +61,42 @@ public class BowlingGame {
         return score;
     }
 
+    public void newGame() {
+        rolls = new int[21];
+        rollIndex = 0;
+    }
+
+    int[] getRolls() {
+        return rolls;
+    }
+
+    int getRollIndex() {
+        return rollIndex;
+    }
+
+    private boolean isNewFrame() {
+        boolean newFrame = true;
+        for (int currentIndex = 0; currentIndex < rollIndex; ) {
+            if (isStrike(currentIndex)) {
+                newFrame = true;
+                currentIndex++;
+            } else {
+                if (isNextIndexAvailableFor(currentIndex)) {
+                    newFrame = true;
+                    currentIndex += 2;
+                } else {
+                    newFrame = false;
+                    break;
+                }
+            }
+        }
+        return newFrame;
+    }
+
+    private boolean isNextIndexAvailableFor(int currentIndex) {
+        return (currentIndex + 1) < rollIndex;
+    }
+
     private int spareBonus(int position) {
         return rolls[position + 2];
     }
@@ -94,18 +111,5 @@ public class BowlingGame {
 
     private boolean isStrike(int position) {
         return rolls[position] == 10;
-    }
-
-    public void newGame() {
-        rolls = new int[21];
-        rollIndex = 0;
-    }
-
-    int[] getRolls() {
-        return rolls;
-    }
-
-    int getRollIndex() {
-        return rollIndex;
     }
 }
