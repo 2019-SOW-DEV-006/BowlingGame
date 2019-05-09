@@ -164,6 +164,13 @@ public class BowlingGameTest {
     }
 
     @Test
+    public void shouldReturnAllButtons_WhenStrike() {
+        bowlingGame.pins(10);
+
+        assertArrayEquals(ALL_POSSIBLE_BUTTONS.toArray(), bowlingGame.possiblePinsForSecondRoll().toArray());
+    }
+
+    @Test
     public void shouldResetGame_OnNewGame() {
         bowlingGame.newGame();
 
