@@ -52,6 +52,7 @@ public class GameViewModelTest {
         assertValidScoreBoard();
         ScoreBoard scoreBoard = getScoreBoard();
         assertEquals(""+pinsDown, scoreBoard.board().get(0));
+        assertEquals(1, scoreBoard.getPosition());
     }
 
     @Test

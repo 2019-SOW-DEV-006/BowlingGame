@@ -56,7 +56,7 @@ public class GameViewModel extends ViewModel {
 
         bowlingGame.pins(pinsDown);
         currentScoreBoard.board().set(rollIndex++, "" + pinsDown);
-
+        currentScoreBoard.setPosition(rollIndex);
         if (pinsDown == 10 && rollIndex < 20) {
             rollIndex++;
         }
