@@ -58,7 +58,8 @@ public class GameViewModelTest {
 
     @Test
     public void shouldShowAllButtonsOnNewGame() {
-        viewModel.newGame();
+        bowlingGame = Mockito.mock(BowlingGame.class);
+        viewModel = new GameViewModel(bowlingGame); //internally call newGame method
 
         assertNotNull(viewModel.getPossiblePins().getValue());
         List<String> possiblePins = viewModel.getPossiblePins().getValue().getPossiblePins();
