@@ -130,6 +130,16 @@ public class GameViewModelTest {
         assertEquals(rollIndex + 2, viewModel.getRollIndex());
     }
 
+    @Test
+    public void shouldNotAllowToInsertPins_IfGameEnds() {
+        when(bowlingGame.isGameEnds()).thenReturn(true);
+        int rollIndex = viewModel.getRollIndex();
+
+        viewModel.roll(10);
+
+        assertEquals(rollIndex, viewModel.getRollIndex());
+    }
+
     private void assertValidScoreBoard() {
         assertNotNull(viewModel.getScoreBoard());
         assertNotNull(getScoreBoard());
