@@ -27,17 +27,17 @@ public class GameViewModel extends ViewModel {
 
     static {
         NEW_SCORE_BOARD = new ArrayList<>(Arrays.asList(
-                "", "",
-                "", "",
-                "", "",
-                "", "",
-                "", "",
-                "", "",
-                "", "",
-                "", "",
-                "", "",
-                "", "",
-                "", ""
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "b", "b"
         ));
         ALL_POSSIBLE_BUTTONS = new ArrayList<>(Arrays.asList(
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
@@ -53,7 +53,7 @@ public class GameViewModel extends ViewModel {
         return scoreBoard;
     }
 
-    void newGame() {
+    public void newGame() {
         currentScoreBoard = new ScoreBoard(NEW_SCORE_BOARD);
         scoreBoard.setValue(currentScoreBoard);
         possiblePins.setValue(new PossiblePins(ALL_POSSIBLE_BUTTONS));
