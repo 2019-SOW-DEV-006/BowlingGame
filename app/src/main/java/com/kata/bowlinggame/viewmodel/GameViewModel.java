@@ -58,9 +58,7 @@ public class GameViewModel extends ViewModel {
         bowlingGame.pins(pinsDown);
         currentScoreBoard.board().set(rollIndex++, "" + pinsDown);
         currentScoreBoard.setPosition(rollIndex);
-        if (pinsDown == 10 && rollIndex < 20) {
-            rollIndex++;
-        }
+        incrementIndexIfStrike(pinsDown);
 
         scoreBoard.setValue(currentScoreBoard);
         possiblePins.setValue(new PossiblePins(bowlingGame.possiblePinsForSecondRoll()));
@@ -93,5 +91,15 @@ public class GameViewModel extends ViewModel {
                 "-", "-",
                 "b", "b"
         );
+    }
+
+    private void incrementIndexIfStrike(int pinsDown) {
+        if (pinsDown == 10 && rollIndex < 20) {
+            rollIndex++;
+        }
+    }
+
+    int getRollIndex() {
+        return rollIndex;
     }
 }

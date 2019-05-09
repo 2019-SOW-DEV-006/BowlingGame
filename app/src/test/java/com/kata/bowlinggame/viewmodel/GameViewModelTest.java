@@ -112,6 +112,15 @@ public class GameViewModelTest {
         assertArrayEquals(GameViewModel.ALL_POSSIBLE_BUTTONS.toArray(), viewModel.getPossiblePins().getValue().getPossiblePins().toArray());
     }
 
+    @Test
+    public void shouldNotIncrementIndex_IfNotStrikeIfFirstRollOfAnyFrame() {
+        int rollIndex = viewModel.getRollIndex();
+
+        viewModel.roll(7);
+
+        assertEquals(rollIndex+1, viewModel.getRollIndex());
+    }
+
     private void assertValidScoreBoard() {
         assertNotNull(viewModel.getScoreBoard());
         assertNotNull(getScoreBoard());
