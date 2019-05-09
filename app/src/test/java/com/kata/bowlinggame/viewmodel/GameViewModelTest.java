@@ -113,7 +113,7 @@ public class GameViewModelTest {
     }
 
     @Test
-    public void shouldNotIncrementIndex_IfNotStrikeIfFirstRollOfAnyFrame() {
+    public void shouldIncrementIndexOnce_IfNotStrike() {
         int rollIndex = viewModel.getRollIndex();
 
         viewModel.roll(7);
