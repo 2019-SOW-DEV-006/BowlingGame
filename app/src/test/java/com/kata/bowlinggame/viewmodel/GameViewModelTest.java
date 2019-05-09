@@ -52,7 +52,7 @@ public class GameViewModelTest {
         Mockito.verify(bowlingGame).pins(pinsDown);
         assertValidScoreBoard();
         ScoreBoard scoreBoard = getScoreBoard();
-        assertEquals(""+pinsDown, scoreBoard.board().get(0));
+        assertEquals("" + pinsDown, scoreBoard.board().get(0));
         assertEquals(1, scoreBoard.getPosition());
     }
 
@@ -69,13 +69,13 @@ public class GameViewModelTest {
 
     @Test
     public void shouldShowPossibleButtonsForSecondRollOfSameFrameFromModel() {
-        when(bowlingGame.possiblePinsForSecondRoll()).thenReturn(Arrays.asList("0","1","2","3"));
+        when(bowlingGame.possiblePinsForSecondRoll()).thenReturn(Arrays.asList("0", "1", "2", "3"));
 
         viewModel.roll(7);
 
         assertNotNull(viewModel.getPossiblePins().getValue());
         List<String> possiblePins = viewModel.getPossiblePins().getValue().getPossiblePins();
-        assertArrayEquals(new String[]{"0","1","2","3"}, possiblePins.toArray());
+        assertArrayEquals(new String[]{"0", "1", "2", "3"}, possiblePins.toArray());
     }
 
     @Test
@@ -118,7 +118,16 @@ public class GameViewModelTest {
 
         viewModel.roll(7);
 
-        assertEquals(rollIndex+1, viewModel.getRollIndex());
+        assertEquals(rollIndex + 1, viewModel.getRollIndex());
+    }
+
+    @Test
+    public void shouldIncrementIndexTwice_IfStrike() {
+        int rollIndex = viewModel.getRollIndex();
+
+        viewModel.roll(10);
+
+        assertEquals(rollIndex + 2, viewModel.getRollIndex());
     }
 
     private void assertValidScoreBoard() {
