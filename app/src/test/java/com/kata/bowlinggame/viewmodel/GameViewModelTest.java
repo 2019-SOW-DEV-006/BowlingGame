@@ -78,7 +78,7 @@ public class GameViewModelTest {
     public void shouldDisplayScore_WhenGameEnds() {
         int score = 300;
         when(bowlingGame.score()).thenReturn(score);
-        when(bowlingGame.isGameEnds()).thenReturn(true);
+        when(bowlingGame.isGameEnds()).thenReturn(false).thenReturn(true);
 
         viewModel.roll(2);
 
@@ -95,6 +95,17 @@ public class GameViewModelTest {
         viewModel.roll(2);
 
         assertNull(viewModel.getGameScore().getValue());
+    }
+
+    @Test
+    public void shouldResetValues_WhenNewGame() {
+        viewModel.roll(8);
+
+        viewModel.newGame();
+
+        assertEquals(0, viewModel.rollIndex);
+        assertArrayEquals(GameViewModel.getDefaultBoardUI().toArray(), viewModel.getScoreBoard().getValue().board().toArray());
+        assertArrayEquals(GameViewModel.ALL_POSSIBLE_BUTTONS.toArray(), viewModel.getPossiblePins().getValue().getPossiblePins().toArray());
     }
 
     private void assertValidScoreBoard() {

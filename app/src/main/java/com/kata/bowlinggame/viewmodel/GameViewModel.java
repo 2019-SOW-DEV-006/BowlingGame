@@ -23,22 +23,10 @@ public class GameViewModel extends ViewModel {
     private BowlingGame bowlingGame;
     private ScoreBoard currentScoreBoard;
 
-    private int rollIndex = 0;
+    int rollIndex = 0;
 
     static {
-        NEW_SCORE_BOARD = new ArrayList<>(Arrays.asList(
-                "-", "-",
-                "-", "-",
-                "-", "-",
-                "-", "-",
-                "-", "-",
-                "-", "-",
-                "-", "-",
-                "-", "-",
-                "-", "-",
-                "-", "-",
-                "b", "b"
-        ));
+        NEW_SCORE_BOARD = new ArrayList<>(getDefaultBoardUI());
         ALL_POSSIBLE_BUTTONS = new ArrayList<>(Arrays.asList(
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
         ));
@@ -54,7 +42,8 @@ public class GameViewModel extends ViewModel {
     }
 
     public void newGame() {
-        currentScoreBoard = new ScoreBoard(NEW_SCORE_BOARD);
+        rollIndex = 0;
+        currentScoreBoard = new ScoreBoard(new ArrayList<>(getDefaultBoardUI()));
         scoreBoard.setValue(currentScoreBoard);
         possiblePins.setValue(new PossiblePins(ALL_POSSIBLE_BUTTONS));
     }
@@ -88,4 +77,20 @@ public class GameViewModel extends ViewModel {
         return gameScore;
     }
 
+
+    static List<String> getDefaultBoardUI() {
+        return Arrays.asList(
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "-", "-",
+                "b", "b"
+        );
+    }
 }
