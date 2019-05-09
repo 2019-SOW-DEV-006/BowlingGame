@@ -163,6 +163,17 @@ public class BowlingGameTest {
         assertArrayEquals(new String[]{"0","1","2","3"}, bowlingGame.possiblePinsForSecondRoll().toArray());
     }
 
+    @Test
+    public void shouldResetGame_OnNewGame() {
+        bowlingGame.newGame();
+
+        int[] rolls = bowlingGame.getRolls();
+        for (int index = 0; index < rolls.length; index++) {
+            assertEquals(0, rolls[index]);
+        }
+        assertEquals(0, bowlingGame.getRollIndex());
+    }
+
     private void pinsDownInEveryRow(int pinsDown) {
         for (int roll = 0; roll < 20; roll++) {
             bowlingGame.pins(pinsDown);

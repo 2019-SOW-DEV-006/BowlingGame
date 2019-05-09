@@ -100,4 +100,12 @@ public class BowlingGame {
         rolls = new int[21];
         rollIndex = 0;
     }
+
+    int[] getRolls() {
+        return rolls;
+    }
+
+    int getRollIndex() {
+        return rollIndex;
+    }
 }
